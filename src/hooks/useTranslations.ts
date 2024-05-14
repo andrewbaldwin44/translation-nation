@@ -1,38 +1,57 @@
 import { useContext, useCallback } from "react";
-
-import TranslationContext from "context/translationContext";
-
+import TranslationContext from "../context/translationContext";
 import {
-  objectPath,
-  templateString,
-  VARIABLE_STRING_REGEX,
-} from "utils/string";
+	objectPath,
+	templateString,
+	VARIABLE_STRING_REGEX,
+	getPluralForm,
+} from "../utils/string";
+import {
+	TranslationVariables,
+	TranslationContextType,
+} from "../types/translation";
 
 export function useTranslations() {
-  const { locale, languages } = useContext(TranslationContext);
+	const { locale, languages } =
+		useContext<TranslationContextType>(TranslationContext);
 
-  const tn = useCallback(
-    (path, variables?) => {
-      const selectedLanguage = languages[locale];
-      let translation = objectPath(path.split("."), selectedLanguage);
+	const tn = useCallback(
+		(path: string, variables?: TranslationVariables): string => {
+			const selectedLanguage = languages[locale];
 
-      if (!translation) {
-        // throw new Error(`Translation at path ${path} not found`);
-        return path;
-      }
+			// Determine if a plural form is needed
+			const amount =
+				variables?.amount !== undefined ? Number(variables.amount) : 0;
 
-      const hasVariables = VARIABLE_STRING_REGEX.test(translation);
-      if (hasVariables && !variables) {
-        throw new Error("Translation template string has missing variables");
-      }
-      if (variables) {
-        translation = templateString(translation, variables);
-      }
+			// Determine if a plural form is needed
+			const pluralPath = path + getPluralForm(amount, locale);
+			let translation: string | undefined = objectPath(
+				pluralPath.split("."),
+				selectedLanguage
+			);
 
-      return translation;
-    },
-    [locale]
-  );
+			// Fallback to singular if plural not found
+			if (!translation) {
+				translation = objectPath(path.split("."), selectedLanguage);
+			}
 
-  return { tn };
+			if (!translation) {
+				console.log(`Translation not found for path: ${path}`);
+				return path;
+			}
+
+			const hasVariables = VARIABLE_STRING_REGEX.test(translation);
+			if (hasVariables && !variables) {
+				throw new Error("Translation template string has missing variables");
+			}
+			if (variables) {
+				translation = templateString(translation, variables);
+			}
+
+			return translation;
+		},
+		[locale, languages]
+	);
+
+	return { tn };
 }

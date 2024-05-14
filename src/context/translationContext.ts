@@ -1,13 +1,12 @@
-import { createContext } from "react";
-
 export type Locale = string;
 export type Languages = string[];
 
-export interface ITranslationContext {
-  locale: Locale;
-  languages: Languages;
-}
+import { createContext } from "react";
+import { TranslationContextType } from "../types/translation";
 
-const TranslationContext = createContext<ITranslationContext>();
+const TranslationContext = createContext<TranslationContextType>({
+	locale: "en",
+	languages: {},
+});
 
 export default TranslationContext;

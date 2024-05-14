@@ -1,0 +1,9 @@
+{
+	"header": {
+		"title": "This is the title as of {{date}}"
+	},
+	"money": {
+		"total": "I have {{amount}} dollar in my pocket",
+		"total_plural": "I have {{amount}} dollars in my pockets"
+	}
+}

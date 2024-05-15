@@ -1,9 +1,10 @@
 {
-	"header": {
-		"title": "Ceci est le titre en date de {{date}}"
-	},
-	"money": {
-		"total": "J'ai {{amount}} dollar dans ma poche",
-		"total_plural": "J'ai {{amount}} dollars dans mes poches"
-	}
+  "header": {
+    "title": "Ceci est le titre en date de {{date}}"
+  },
+  "money": {
+    "total_zero": "J'ai {{amount}} dollar dans ma poche",
+    "total": "J'ai {{amount}} dollar dans ma poche",
+    "total_plural": "J'ai {{amount}} dollars dans mes poches"
+  }
 }

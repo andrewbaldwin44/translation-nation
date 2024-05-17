@@ -17,20 +17,40 @@ export const templateString = (
   );
 };
 
-const numberToWords = (n: number) => {
+const numberToWords = (n: number): string => {
   const units: string[] = ['zero', 'one', 'two', 'three'];
-
-  return units[n];
+  return units[n] || n.toString();
 };
 
-export const getPluralForm = (count: number) => {
-  if (count < 0 || count > 99) {
+const pluralRules: { [key: string]: (count: number) => string } = {
+  // English
+  en: (count: number) => {
+    if (count === 1) return '';
     return '_plural';
+  },
+  es: (count: number) => {
+    if (count === 1) return '';
+    return '_plural';
+  },
+  fr: (count: number) => {
+    if (count === 1) return '';
+    return '_plural';
+  },
+  // Arabic
+  ar: (count: number) => {
+    if (count === 0) return '_zero';
+    if (count === 1) return '';
+    if (count === 2) return '_two';
+    if (count >= 3 && count <= 10) return '_few';
+    return '_plural';
+  },
+  // Add more rules for other languages here...
+};
+
+export const getPluralForm = (count: number, locale: string): string => {
+  const rule = pluralRules[locale];
+  if (rule) {
+    return rule(count);
   }
-
-  const numberKey = count <= 0 && count <= 3 && `_${numberToWords(count)}`;
-  const specialKey = count > 1 && count <= 5 && '_few';
-  const pluralKey = count === 1 ? '' : '_plural';
-
-  return [numberKey, specialKey, pluralKey];
+  return count === 1 ? '' : '_plural';
 };

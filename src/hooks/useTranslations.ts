@@ -1,5 +1,5 @@
 import { useContext, useCallback } from 'react';
-import TranslationContext from '../context/translationContext';
+import { TranslationContext } from '../context/translationContext';
 import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from '../utils/string';
 import { TranslationVariables, TranslationContextType } from '../types/translation';
 

@@ -17,11 +17,6 @@ export const templateString = (
   );
 };
 
-const numberToWords = (n: number): string => {
-  const units: string[] = ['zero', 'one', 'two', 'three'];
-  return units[n] || n.toString();
-};
-
 const pluralRules: { [key: string]: (count: number) => string } = {
   // English
   en: (count: number) => {

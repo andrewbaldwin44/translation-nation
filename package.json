@@ -1,28 +1,30 @@
 {
-	"name": "translation-nation",
-	"private": false,
-	"version": "1.0.0",
-	"type": "module",
-	"scripts": {
-		"build": "tsc && vite build",
-		"test": "vitest",
-		"test-ui": "vitest --ui"
-	},
-	"dependencies": {
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
-	},
-	"devDependencies": {
-		"@vitest/ui": "^1.6.0",
-		"@testing-library/react-hooks": "^8.0.1",
-		"@types/jest": "^29.5.12",
-		"@types/node": "^20.12.11",
-		"@types/react": "^18.2.66",
-		"@types/react-dom": "^18.2.22",
-		"@vitejs/plugin-react": "^4.2.1",
-		"jsdom": "^24.0.0",
-		"typescript": "^5.2.2",
-		"vite": "^5.2.0",
-		"vitest": "^1.6.0"
-	}
+  "name": "translation-nation",
+  "private": false,
+  "version": "1.0.3",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "test": "vitest",
+    "test-ui": "vitest --ui"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^1.6.0",
+    "esbuild": "^0.21.3",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vitest": "^1.6.0"
+  }
 }

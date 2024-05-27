@@ -42,7 +42,8 @@ const pluralRules: { [key: string]: (count: number) => string } = {
   // Add more rules for other languages here...
 };
 
-export const getPluralForm = (count: number, locale: string): string => {
+export const getPluralForm = (count: number | undefined, locale: string): string => {
+  if (count === undefined) return '';
   const rule = pluralRules[locale];
   if (rule) {
     return rule(count);

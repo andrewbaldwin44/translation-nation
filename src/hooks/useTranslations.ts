@@ -11,7 +11,7 @@ export function useTranslations() {
       const selectedLanguage = languages[locale];
 
       // Determine if a plural form is needed
-      const amount = variables?.amount !== undefined ? Number(variables.amount) : 0;
+      const amount = variables?.amount !== undefined ? Number(variables.amount) : undefined;
 
       // Determine if a plural form is needed
       const pluralPath = path + getPluralForm(amount, locale);

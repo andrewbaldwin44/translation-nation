@@ -8,3 +8,5 @@ export const TranslationContext = createContext<TranslationContextType>({
   locale: 'en',
   languages: {},
 });
+
+export const TranslationProvider = TranslationContext.Provider;

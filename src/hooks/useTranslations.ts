@@ -10,11 +10,10 @@ export function useTranslations() {
     (path: string, variables?: TranslationVariables): string => {
       const selectedLanguage = languages[locale];
 
-      // Determine if a plural form is needed
-      const amount = variables?.amount !== undefined ? Number(variables.amount) : undefined;
+      const amount = variables?.amount ? Number(variables.amount) : undefined;
 
       // Determine if a plural form is needed
-      const pluralPath = path + getPluralForm(amount, locale);
+      const pluralPath = path + getPluralForm(locale, amount);
       let translation: string | undefined = objectPath(pluralPath.split('.'), selectedLanguage);
 
       // Fallback to singular if plural not found

@@ -1,29 +1,35 @@
-import { useContext, useCallback } from "react";
-
-import TranslationContext from "context/translationContext";
-
-import {
-  objectPath,
-  templateString,
-  VARIABLE_STRING_REGEX,
-} from "utils/string";
+import { useContext, useCallback } from 'react';
+import { TranslationContext } from '../context/translationContext';
+import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from '../utils/string';
+import { TranslationVariables, TranslationContextType } from '../types/translation';
 
 export function useTranslations() {
-  const { locale, languages } = useContext(TranslationContext);
+  const { locale, languages } = useContext<TranslationContextType>(TranslationContext);
 
   const tn = useCallback(
-    (path, variables?) => {
+    (path: string, variables?: TranslationVariables): string => {
       const selectedLanguage = languages[locale];
-      let translation = objectPath(path.split("."), selectedLanguage);
+
+      // Determine if a plural form is needed
+      const amount = variables?.amount !== undefined ? Number(variables.amount) : undefined;
+
+      // Determine if a plural form is needed
+      const pluralPath = path + getPluralForm(amount, locale);
+      let translation: string | undefined = objectPath(pluralPath.split('.'), selectedLanguage);
+
+      // Fallback to singular if plural not found
+      if (!translation) {
+        translation = objectPath(path.split('.'), selectedLanguage);
+      }
 
       if (!translation) {
-        // throw new Error(`Translation at path ${path} not found`);
+        console.log(`Translation not found for path: ${path}`);
         return path;
       }
 
       const hasVariables = VARIABLE_STRING_REGEX.test(translation);
       if (hasVariables && !variables) {
-        throw new Error("Translation template string has missing variables");
+        throw new Error('Translation template string has missing variables');
       }
       if (variables) {
         translation = templateString(translation, variables);
@@ -31,7 +37,7 @@ export function useTranslations() {
 
       return translation;
     },
-    [locale]
+    [locale, languages],
   );
 
   return { tn };

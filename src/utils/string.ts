@@ -39,14 +39,18 @@ const pluralRules: { [key: string]: (count: number) => string } = {
     if (count >= 3 && count <= 10) return '_few';
     return '_plural';
   },
-  // Add more rules for other languages here...
 };
 
-export const getPluralForm = (count: number | undefined, locale: string): string => {
-  if (count === undefined) return '';
+export const getPluralForm = (locale: string, count?: number) => {
+  if (!count) {
+    return '';
+  }
+
   const rule = pluralRules[locale];
+
   if (rule) {
     return rule(count);
   }
+
   return count === 1 ? '' : '_plural';
 };

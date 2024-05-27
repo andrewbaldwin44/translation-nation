@@ -1,22 +1,17 @@
 {
   "name": "translation-nation",
   "private": false,
-  "version": "1.0.5",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "license": "MIT",
   "scripts": {
-    "build": "node esbuild.config.js",
+    "build": "rollup -c",
     "test": "vitest",
-    "test-ui": "vitest --ui",
-    "test-build": "rollup -c"
+    "test-ui": "vitest --ui"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@testing-library/react-hooks": "^8.0.1",
@@ -26,7 +21,6 @@
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/ui": "^1.6.0",
-    "esbuild": "^0.21.3",
     "jsdom": "^24.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

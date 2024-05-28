@@ -4,9 +4,13 @@ export type Languages = string[];
 import { createContext } from 'react';
 import { TranslationContextType } from '../types/translation';
 
+type NestedObject = {
+  [key: string]: string | NestedObject;
+};
+
 interface ITranslationProvider {
   locale: string;
-  languages: { [key: string]: any };
+  languages: { [key: string]: NestedObject };
   children: React.ReactNode;
 }
 

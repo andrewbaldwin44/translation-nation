@@ -1,3 +1,5 @@
+import { TranslationVariables } from 'context/context-types';
+
 export type ObjectLiteral = { [key: string]: any };
 
 export const objectPath = (path: string[], object: ObjectLiteral): any =>
@@ -7,10 +9,7 @@ export const VARIABLE_STRING_REGEX = /\{\{\w+\}\}/;
 export const EMPHASIS_STRING_REGEX = /<%- (.*?) %>/g;
 export const PLURAL_REPLACEMENT_REGEX = /%s/g;
 
-export const templateString = (
-  template: string,
-  variables: Record<string, string | number>,
-): string => {
+export const templateString = (template: string, variables: TranslationVariables): string => {
   return template.replace(
     /\{\{(\w+)\}\}/g,
     (_, variable) => String(variables[variable]) || `{{${variable}}}`,

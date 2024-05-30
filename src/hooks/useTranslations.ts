@@ -1,14 +1,15 @@
 import { useContext, useCallback } from 'react';
-import { TranslationContext } from 'context/translationContext';
-import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from 'utils/string';
-import { TranslationVariables, TranslationContextType } from 'types/translation';
+import { TranslationContext } from '@/context/translationContext';
+import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from '@/utils/string';
+import { TranslationVariables, TranslationContextType } from '@/types/translation';
+import { NestedObject } from '@/context/context-types';
 
 export function useTranslations() {
   const { locale, languages } = useContext<TranslationContextType>(TranslationContext);
 
   const tn = useCallback(
     (path: string, variables?: TranslationVariables): string => {
-      const selectedLanguage = languages[locale];
+      const selectedLanguage = languages[locale] as NestedObject;
 
       const amount = variables?.amount ? Number(variables.amount) : undefined;
 

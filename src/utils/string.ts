@@ -1,9 +1,10 @@
-import { TranslationVariables } from 'context/context-types';
+import { NestedObject, TranslationVariables } from '@/context/context-types';
 
-export type ObjectLiteral = { [key: string]: any };
-
-export const objectPath = (path: string[], object: ObjectLiteral): any =>
-  path.reduce((reducedObject, pathname) => reducedObject?.[pathname], object || '');
+export const objectPath = (path: string[], object: NestedObject): string =>
+  path.reduce(
+    (reducedObject: NestedObject | string, pathname) => (reducedObject as NestedObject)?.[pathname],
+    object,
+  ) as string;
 
 export const VARIABLE_STRING_REGEX = /\{\{\w+\}\}/;
 export const EMPHASIS_STRING_REGEX = /<%- (.*?) %>/g;

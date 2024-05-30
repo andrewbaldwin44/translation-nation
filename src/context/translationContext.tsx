@@ -5,10 +5,7 @@ interface ITranslationProvider<Locale, Lang> extends TranslationContextType<Loca
   children: ReactNode;
 }
 
-export const TranslationContext = createContext<TranslationContextType>({
-  locale: '',
-  languages: {},
-});
+export const TranslationContext = createContext({});
 
 export function TranslationProvider<Locale extends string, Lang extends NestedObject>({
   locale,

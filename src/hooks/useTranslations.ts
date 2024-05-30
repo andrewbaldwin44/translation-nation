@@ -31,7 +31,7 @@ export function useTranslations() {
       if (hasVariables && !variables) {
         throw new Error('Translation template string has missing variables');
       }
-      if (variables) {
+      if (variables && typeof translation === 'string') {
         translation = templateString(translation, variables);
       }
 

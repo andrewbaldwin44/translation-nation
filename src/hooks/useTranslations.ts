@@ -1,7 +1,7 @@
 import { useContext, useCallback } from 'react';
-import { TranslationContext } from '../context/translationContext';
-import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from '../utils/string';
-import { TranslationVariables, TranslationContextType } from '../types/translation';
+import { TranslationContext } from 'context/translationContext';
+import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from 'utils/string';
+import { TranslationVariables, TranslationContextType } from 'types/translation';
 
 export function useTranslations() {
   const { locale, languages } = useContext<TranslationContextType>(TranslationContext);

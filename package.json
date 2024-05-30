@@ -6,6 +6,7 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "license": "MIT",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "test": "vitest",

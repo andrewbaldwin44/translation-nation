@@ -1,21 +1,20 @@
-export type Locale = string;
-export type Languages = string[];
+import { ReactNode, createContext } from 'react';
+import { NestedObject, TranslationContextType } from 'context/context-types';
 
-import { createContext } from 'react';
-import { TranslationContextType } from '../types/translation';
-
-interface ITranslationProvider {
-  locale: string;
-  languages: { [key: string]: any };
-  children: React.ReactNode;
+interface ITranslationProvider<Locale, Lang> extends TranslationContextType<Locale, Lang> {
+  children: ReactNode;
 }
 
 export const TranslationContext = createContext<TranslationContextType>({
-  locale: 'en',
+  locale: '',
   languages: {},
 });
 
-export function TranslationProvider({ locale, languages, children }: ITranslationProvider) {
+export function TranslationProvider<Locale extends string, Lang extends NestedObject>({
+  locale,
+  languages,
+  children,
+}: ITranslationProvider<Locale, Lang>) {
   return (
     <TranslationContext.Provider value={{ languages, locale }}>
       {children}

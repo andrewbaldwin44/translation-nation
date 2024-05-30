@@ -1,11 +1,13 @@
 import { ReactNode, createContext } from 'react';
-import { NestedObject, TranslationContextType } from 'context/context-types';
+import { NestedObject, TranslationContextType } from '@/context/context-types';
 
 interface ITranslationProvider<Locale, Lang> extends TranslationContextType<Locale, Lang> {
   children: ReactNode;
 }
 
-export const TranslationContext = createContext({});
+export const TranslationContext = createContext<TranslationContextType>(
+  {} as TranslationContextType,
+);
 
 export function TranslationProvider<Locale extends string, Lang extends NestedObject>({
   locale,

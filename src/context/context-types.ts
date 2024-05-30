@@ -1,5 +1,5 @@
 export type NestedObject = {
-  [key: string]: string | NestedObject;
+  [key: string]: keyof NestedObject | NestedObject;
 };
 
 export interface TranslationContextType<Locale = string, Lang = NestedObject> {

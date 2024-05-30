@@ -1,6 +1,1 @@
-export interface TranslationContextType {
-	locale: string;
-	languages: Record<string, Record<string, any>>;
-}
-
-export type TranslationVariables = Record<string, string | number>;
+export { TranslationContextType, TranslationVariables } from 'context-types';

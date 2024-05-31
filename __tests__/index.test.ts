@@ -114,4 +114,12 @@ describe('useTranslations hook', () => {
 
     mockContextValue.locale = 'en';
   });
+
+  it('should return "Invalid path" if the path results in an object', () => {
+    const { result } = renderHook(() => useTranslations());
+
+    const translation = result.current.tn('objectTest.object');
+
+    expect(translation).toBe('Invalid path: objectTest.object');
+  });
 });

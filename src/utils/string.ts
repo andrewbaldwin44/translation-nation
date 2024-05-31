@@ -42,7 +42,7 @@ const pluralRules: { [key: string]: (count: number) => string } = {
 };
 
 export const getPluralForm = (locale: string, count?: number) => {
-  if (!count) {
+  if (!count && count !== 0) {
     return '';
   }
 

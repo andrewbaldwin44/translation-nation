@@ -11,7 +11,7 @@ export function useTranslations() {
     (path: string, variables?: TranslationVariables): string => {
       const selectedLanguage = languages[locale] as NestedObject;
 
-      const amount = variables?.amount ? Number(variables.amount) : undefined;
+      const amount = variables?.amount !== undefined ? Number(variables.amount) : undefined;
 
       // Determine if a plural form is needed
       const pluralPath = path + getPluralForm(locale, amount);
@@ -27,11 +27,16 @@ export function useTranslations() {
         return path;
       }
 
+      if (typeof translation === 'object') {
+        console.log(`Translation for path ${path} is an object, which is invalid`);
+        return `Invalid path: ${path}`;
+      }
+
       const hasVariables = VARIABLE_STRING_REGEX.test(translation);
       if (hasVariables && !variables) {
         throw new Error('Translation template string has missing variables');
       }
-      if (variables && typeof translation === 'string') {
+      if (variables) {
         translation = templateString(translation, variables);
       }
 

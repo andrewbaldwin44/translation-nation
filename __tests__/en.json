@@ -5,5 +5,10 @@
   "money": {
     "total": "I have {{amount}} dollar in my pocket",
     "total_plural": "I have {{amount}} dollars in my pockets"
+  },
+  "objectTest": {
+    "object": {
+      "key": "value"
+    }
   }
 }

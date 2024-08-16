@@ -26,7 +26,9 @@
   "scripts": {
     "build": "vite build",
     "test": "vitest",
-    "test-ui": "vitest --ui"
+    "test-ui": "vitest --ui",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "type-check": "tsc"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.0",

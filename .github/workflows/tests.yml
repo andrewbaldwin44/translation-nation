@@ -29,3 +29,53 @@ jobs:
       - uses: borales/actions-yarn@v5
         with:
           cmd: type-check
+
+  publish:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.ref, 'refs/tags')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - uses: borales/actions-yarn@v5
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v5
+        with:
+          cmd: build
+      - name: Store tag
+        run: echo "TAG=${{ github.ref_name }}" >> $GITHUB_ENV
+      - uses: borales/actions-yarn@v5
+        name: Publish package on NPM
+        with:
+          cmd: publish --non-interactive --new-version ${{ github.ref_name }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish_prerelease:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - uses: borales/actions-yarn@v5
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v5
+        with:
+          cmd: build
+      - uses: borales/actions-yarn@v5
+        name: Publish package on NPM
+        with:
+          cmd: publish --non-interactive --tag next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

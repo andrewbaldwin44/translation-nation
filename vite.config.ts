@@ -10,7 +10,6 @@ export default defineConfig((config: UserConfig) => ({
     tsconfigPaths(),
     dts({
       outDir: './dist/types',
-      //   exclude: ['**/*.test.ts', '**/*.test.tsx', '**/test', '**/tests'],
     }),
     config.mode !== 'test' &&
       checkerPlugin({

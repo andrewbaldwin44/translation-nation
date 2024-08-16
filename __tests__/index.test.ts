@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { useTranslations } from '../src/hooks/useTranslations';
-import { TranslationContextType } from '../src/types/translation';
 import { vi } from 'vitest';
+
+import { useTranslations } from 'hooks/useTranslations';
+import { TranslationContextType } from 'types/translation';
 
 const mockContextValue: TranslationContextType = {
   locale: 'en',

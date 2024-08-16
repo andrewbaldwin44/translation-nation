@@ -1,7 +1,6 @@
 {
   "name": "translation-nation",
   "description": "React is a JavaScript library for building user interfaces.",
-  "version": "1.0.9",
   "keywords": [
     "translation-nation",
     "translation",
@@ -71,5 +70,6 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  }
+  },
+  "version": "1.0.12"
 }

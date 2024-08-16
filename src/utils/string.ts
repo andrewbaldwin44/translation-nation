@@ -1,4 +1,4 @@
-import { NestedObject, TranslationVariables } from '@/context/context-types';
+import { NestedObject, TranslationVariables } from 'context/context-types';
 
 export const objectPath = (path: string[], object: NestedObject): string =>
   path.reduce(

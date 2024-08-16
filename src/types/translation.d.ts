@@ -1,1 +1,1 @@
-export { TranslationContextType, TranslationVariables } from '@/context/context-types';
+export { TranslationContextType, TranslationVariables } from 'context/context-types';

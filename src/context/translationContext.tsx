@@ -1,5 +1,6 @@
 import { ReactNode, createContext } from 'react';
-import { NestedObject, TranslationContextType } from '@/context/context-types';
+
+import { NestedObject, TranslationContextType } from 'context/context-types';
 
 interface ITranslationProvider<Locale, Lang> extends TranslationContextType<Locale, Lang> {
   children: ReactNode;

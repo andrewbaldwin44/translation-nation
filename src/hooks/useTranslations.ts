@@ -1,8 +1,9 @@
 import { useContext, useCallback } from 'react';
-import { TranslationContext } from '@/context/translationContext';
-import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from '@/utils/string';
-import { TranslationVariables, TranslationContextType } from '@/types/translation';
-import { NestedObject } from '@/context/context-types';
+
+import { NestedObject } from 'context/context-types';
+import { TranslationContext } from 'context/translationContext';
+import { TranslationVariables, TranslationContextType } from 'types/translation';
+import { objectPath, templateString, VARIABLE_STRING_REGEX, getPluralForm } from 'utils/string';
 
 export function useTranslations() {
   const { locale, languages } = useContext<TranslationContextType>(TranslationContext);
@@ -23,11 +24,13 @@ export function useTranslations() {
       }
 
       if (!translation) {
+        // eslint-disable-next-line no-console
         console.log(`Translation not found for path: ${path}`);
         return path;
       }
 
       if (typeof translation === 'object') {
+        // eslint-disable-next-line no-console
         console.log(`Translation for path ${path} is an object, which is invalid`);
         return `Invalid path: ${path}`;
       }

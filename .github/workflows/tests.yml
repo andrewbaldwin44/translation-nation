@@ -17,18 +17,19 @@ jobs:
       - uses: borales/actions-yarn@v5
         with:
           cmd: install
+          dir: blah
       - uses: borales/actions-yarn@v5
         with:
           cmd: build
-      - uses: borales/actions-yarn@v5
-        with:
-          cmd: test
+          dir: blah
       - uses: borales/actions-yarn@v5
         with:
           cmd: lint
+          dir: blah
       - uses: borales/actions-yarn@v5
         with:
           cmd: type-check
+          dir: blah
 
   publish:
     runs-on: ubuntu-latest
